@@ -19,6 +19,7 @@ class CreateVocasTable extends Migration
             $table->char('japanese');
             $table->char('hiragana');
             $table->char('mean');
+            $table->char('today');
         
             $table->timestamps();
         });

@@ -31,10 +31,9 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/main', function () {
-    return Inertia::render('voca/Main', ['vocas'=>Voca::all()]);
+    return Inertia::render('voca/Main', ['vocas'=>Voca::all(), 'count'=>Voca::all()->count()]);
 })->middleware(['auth', 'verified'])->name('main');
 
-// Route::resource('/vocas', vocaController::class);
 Route::post('/vocas.store', [vocaController::class, 'store']);
 
 require __DIR__.'/auth.php';

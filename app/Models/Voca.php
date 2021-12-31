@@ -13,5 +13,6 @@ class Voca extends Model
         'japanese',
         'hiragana',
         'mean',
+        'today'
     ];
 }

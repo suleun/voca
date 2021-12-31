@@ -16,7 +16,7 @@
 
                 <div class="my-4 bg-white overflow-hidden shadow-sm sm:rounded-lg ">
                     <div class="p-6 bg-white border-b border-gray-200">
-                        <savedWord :vocas="vocas"></savedWord>
+                        <savedWord :vocas="vocas" :count="count"></savedWord>
                     </div>
 
                 </div>
@@ -32,7 +32,7 @@
     import savedWord from '@/Pages/voca/vocaComponents/savedWord.vue';
 
     export default {
-        props: ['vocas'],
+        props: ['vocas', 'count'],
         components: {
             BreezeAuthenticatedLayout,
             Head,

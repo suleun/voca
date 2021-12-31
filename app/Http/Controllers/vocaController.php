@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Voca;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Redirect;
 
 class vocaController extends Controller
@@ -15,7 +16,6 @@ class vocaController extends Controller
      */
     public function index()
     {
-
     }
 
     /**
@@ -44,6 +44,11 @@ class vocaController extends Controller
         $voca -> japanese = $request->japanese;
         $voca -> hiragana = $request->hiragana;
         $voca -> mean = $request->mean;
+
+        $date = \Carbon\Carbon::now();
+        $todate = $date->format('Y-m-d');
+
+        $voca -> today = $todate;
 
         $voca->save();
 
