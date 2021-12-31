@@ -1,25 +1,26 @@
 <template>
     <div class="flex flex-col space-y-2">
 
-        <form action="" class="mx-auto">
-
+        <form  action="vocas.store"
+                    method="post" class="mx-auto">
+            <input type="hidden" name="_token" id="token" :value="csrf">
             <div >
                 <input
                     id="default"
                     type="text"
-                    name="default"
+                    name="japanese"
                     placeholder="한자"
                     class="px-4 py-2 mx-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200"/>
                 <input
                     id="default"
                     type="text"
-                    name="default"
-                    placeholder="히라가나"
+                    name="hiragana"
+                    placeholder="읽는 방법"
                     class="px-4 py-2 mx-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200"/>
                 <input
                     id="default"
                     type="text"
-                    name="default"
+                    name="mean"
                     placeholder="뜻"
                     class="px-4 py-2 mx-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200"/>
                 <button
@@ -35,5 +36,11 @@
 
 <script>
 
-    export default {components: {}}
+    export default {components: {},
+    data() {
+        return {
+            csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        }
+    }
+    }
 </script>

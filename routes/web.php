@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\vocaController;
+use App\Models\Voca;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -29,7 +31,10 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/main', function () {
-    return Inertia::render('voca/Main');
+    return Inertia::render('voca/Main', ['vocas'=>Voca::all()]);
 })->middleware(['auth', 'verified'])->name('main');
+
+// Route::resource('/vocas', vocaController::class);
+Route::post('/vocas.store', [vocaController::class, 'store']);
 
 require __DIR__.'/auth.php';
