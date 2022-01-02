@@ -20,6 +20,10 @@
                                 </BreezeNavLink>
 
                                 <BreezeNavLink :href="route('main')" :active="route().current('main')">
+                                    SaveWord
+                                </BreezeNavLink>
+
+                                  <BreezeNavLink :href="route('see')" :active="route().current('see')">
                                     Vocabulary
                                 </BreezeNavLink>
                             </div>
@@ -70,6 +74,10 @@
                         </BreezeResponsiveNavLink>
 
                          <BreezeResponsiveNavLink :href="route('main')" :active="route().current('main')">
+                            SaveWord
+                        </BreezeResponsiveNavLink>
+
+                           <BreezeResponsiveNavLink :href="route('see')" :active="route().current('see')">
                             Vocabulary
                         </BreezeResponsiveNavLink>
                     </div>

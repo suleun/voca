@@ -36,4 +36,9 @@ Route::get('/main', function () {
 
 Route::post('/vocas.store', [vocaController::class, 'store']);
 
+Route::get('/seesaved', function () {
+    return Inertia::render('voca/See', ['vocas'=>Voca::all(), 'count'=>Voca::all()->count()]);
+})->middleware(['auth', 'verified'])->name('see');
+
+
 require __DIR__.'/auth.php';
