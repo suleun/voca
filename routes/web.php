@@ -40,5 +40,7 @@ Route::get('/seesaved', function () {
     return Inertia::render('voca/See', ['vocas'=>Voca::all(), 'count'=>Voca::all()->count()]);
 })->middleware(['auth', 'verified'])->name('see');
 
+Route::get('/vocas.find', [vocaController::class, 'find']);
+
 
 require __DIR__.'/auth.php';

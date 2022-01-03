@@ -63,7 +63,8 @@ class vocaController extends Controller
      */
     public function show($id)
     {
-        //
+        
+
     }
 
     /**
@@ -98,5 +99,13 @@ class vocaController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function find(Request $request)
+    {
+        $word = Voca::where("mean", $request->find)->get();
+
+        // dd($word);
+       return Redirect::route('see');
     }
 }

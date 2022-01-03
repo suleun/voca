@@ -17,9 +17,15 @@
                             <tr
                                 class="rounded-lg text-sm font-medium text-gray-700 text-left"
                                 style="font-size: 0.9674rem">
-                                <th class="px-4 py-2 bg-gray-200 " style="background-color:#f8f8f8">한자</th>
-                                <th class="px-4 py-2 " style="background-color:#f8f8f8">읽는 방법</th>
-                                <th class="px-4 py-2 " style="background-color:#f8f8f8">뜻</th>
+                                <th class="px-4 py-2 bg-gray-200 " style="background-color:#f8f8f8">한자
+                                    <Toggle v-model="value"/></th>
+
+                                <th class="px-4 py-2 " style="background-color:#f8f8f8">읽는 방법<Toggle v-model="value1"/>
+                                </th>
+
+                                <th class="px-4 py-2 " style="background-color:#f8f8f8">뜻<Toggle v-model="value2"/>
+                                </th>
+
                                 <th class="px-4 py-2 " style="background-color:#f8f8f8">저장한 날짜</th>
                             </tr>
                         </thead>
@@ -29,9 +35,15 @@
                                 v-for="voca in vocas"
                                 :key="voca.id"
                                 class="hover:bg-gray-100 border-b border-gray-200 py-10">
-                                <td class="px-4 py-4">{{ voca.japanese }}</td>
-                                <td class="px-4 py-4">{{ voca.hiragana }}</td>
-                                <td class="px-4 py-4">{{ voca.mean }}</td>
+                                <td v-if="value" class="px-4 py-4">{{ voca.japanese }}</td>
+                                <td v-if="!value" class="px-4 py-4"></td>
+
+                                <td v-if="value1" class="px-4 py-4">{{ voca.hiragana }}</td>
+                                <td v-if="!value1" class="px-4 py-4"></td>
+
+                                <td v-if="value2" class="px-4 py-4">{{ voca.mean }}</td>
+                                <td v-if="!value2" class="px-4 py-4"></td>
+
                                 <td class="px-4 py-4">{{ voca.today }}</td>
                             </tr>
 
@@ -47,11 +59,16 @@
 </template>
 
 <script>
-
+    import Toggle from '@vueform/toggle'
     export default {
         props: [
             'vocas', 'count'
         ],
-        components: {}
+        components: {
+            Toggle
+        },
+        data() {
+            return {value: true, value1: true, value2: true}
+        }
     }
 </script>
