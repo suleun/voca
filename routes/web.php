@@ -42,5 +42,8 @@ Route::get('/seesaved', function () {
 
 Route::get('/vocas.find', [vocaController::class, 'find']);
 
+Route::delete('/vocas.destroy/{id}', [vocaController::class, 'destroy'])->name('vocaDestroy');
+
+
 
 require __DIR__.'/auth.php';

@@ -20,13 +20,18 @@
                                 <th class="px-4 py-2 bg-gray-200 " style="background-color:#f8f8f8">한자
                                     <Toggle v-model="value"/></th>
 
-                                <th class="px-4 py-2 " style="background-color:#f8f8f8">읽는 방법<Toggle v-model="value1"/>
+                                <th class="px-4 py-2 " style="background-color:#f8f8f8">읽는 방법
+                                    <Toggle v-model="value1"/>
                                 </th>
 
-                                <th class="px-4 py-2 " style="background-color:#f8f8f8">뜻<Toggle v-model="value2"/>
+                                <th class="px-4 py-2 " style="background-color:#f8f8f8">뜻
+                                    <Toggle v-model="value2"/>
                                 </th>
 
                                 <th class="px-4 py-2 " style="background-color:#f8f8f8">저장한 날짜</th>
+
+                                <th class="px-4 py-2 mx-auto" style="background-color:#f8f8f8"></th>
+
                             </tr>
                         </thead>
                         <tbody class="text-sm font-normal text-gray-700">
@@ -45,6 +50,15 @@
                                 <td v-if="!value2" class="px-4 py-4"></td>
 
                                 <td class="px-4 py-4">{{ voca.today }}</td>
+
+                                <td>
+                                    <button @click="deleteVoca(voca.id)">
+                                        <img
+                                            class="mx-auto cursor-pointer"
+                                            src="https://img.icons8.com/external-kiranshastry-gradient-kiranshastry/30/000000/external-delete-multimedia-kiranshastry-gradient-kiranshastry.png"/>
+
+                                    </button>
+                                </td>
                             </tr>
 
                         </tbody>
@@ -62,13 +76,29 @@
     import Toggle from '@vueform/toggle'
     export default {
         props: [
-            'vocas', 'count'
+            'vocas', 'count', 
         ],
         components: {
             Toggle
         },
         data() {
             return {value: true, value1: true, value2: true}
+        },
+        methods: {
+            deleteVoca(id) {
+                if (confirm('Are you sure to delete?')) {
+                    axios
+                        .delete('/vocas.destroy/' + id)
+                        .then(response => {
+                            console.log("삭제 되었습니다.");
+                        })
+                        .catch(error => {
+                            alert('delete failed:' + error);
+                            console.log(error);
+                        });
+                }
+
+            }
         }
     }
 </script>

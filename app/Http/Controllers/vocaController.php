@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Voca;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Redirect;
@@ -45,9 +46,9 @@ class vocaController extends Controller
         $voca -> hiragana = $request->hiragana;
         $voca -> mean = $request->mean;
 
-        $date = \Carbon\Carbon::now();
+        $date = Carbon::now();
         $todate = $date->format('Y-m-d');
-
+        
         $voca -> today = $todate;
 
         $voca->save();
@@ -98,14 +99,15 @@ class vocaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $voca = Voca::find($id);
+        $voca->delete();
+
+        return Redirect::route('voca/See', ['vocas'=>Voca::all(), 'count'=>Voca::all()->count()]);
     }
 
     public function find(Request $request)
     {
         $word = Voca::where("mean", $request->find)->get();
-
-        // dd($word);
-       return Redirect::route('see');
+        return Redirect::route('see');
     }
 }
